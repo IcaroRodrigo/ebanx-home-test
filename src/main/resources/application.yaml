@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:./data/exemplo
+    url: jdbc:h2:file:./data/ebanx
     username: root
     password: 123456
   jpa:
