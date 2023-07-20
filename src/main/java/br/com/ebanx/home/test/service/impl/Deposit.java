@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Component
 public class Deposit implements Event {
@@ -15,10 +16,18 @@ public class Deposit implements Event {
     AccountRepository accountRepository;
     @Override
     public AccountEntity action(Integer accountCode, BigDecimal amount) {
-        AccountEntity accountEntity = new AccountEntity();
-        accountEntity.setAccountCode(accountCode);
-        accountEntity.setAmount(amount);
+        AccountEntity accountEntity;
+        accountEntity = accountRepository.findByAccountCode(accountCode);
+       if(accountEntity != null) {
 
+           BigDecimal balance = accountEntity.getAmount().add(amount);
+           accountEntity.setAmount(balance);
+       }
+        else{
+            accountEntity = new AccountEntity();
+            accountEntity.setAccountCode(accountCode);
+            accountEntity.setAmount(amount);
+        }
         AccountEntity account = accountRepository.save(accountEntity);
         return account;
     }

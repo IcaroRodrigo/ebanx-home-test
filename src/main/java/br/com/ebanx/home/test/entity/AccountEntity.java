@@ -16,7 +16,7 @@ public class AccountEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private Integer accountCode;
     @Column(nullable = false)
     private BigDecimal amount;
