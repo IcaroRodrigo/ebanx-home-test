@@ -5,11 +5,14 @@ spring:
     username: root
     password: 123456
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    #database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
+   # defer-datasouce-initialization: true
   h2:
     console:
       enabled: true
