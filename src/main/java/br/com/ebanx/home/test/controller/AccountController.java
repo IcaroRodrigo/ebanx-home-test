@@ -25,14 +25,12 @@ public class AccountController {
     public AccountController(Map<String, Event> eventMap) {
         this.eventMap = eventMap;
     }
-    @GetMapping("/{id}")
+    @GetMapping("/balance")
     public ResponseEntity balance (@RequestParam(name = "account_id") Integer accountCode){
 
         AccountEntity account = accountService.balance(accountCode);
         Optional<AccountEntity> accountOptional = Optional.ofNullable(account);
-
-       return accountOptional.map(data -> ResponseEntity.status(HttpStatus.OK).body(new AccountDto(data))).orElse(ResponseEntity.notFound().build());
-
+        return accountOptional.map(data -> ResponseEntity.status(HttpStatus.OK).body(new AccountDto(data))).orElse(ResponseEntity.notFound().build());
     }
     @PostMapping("/event")
     public ResponseEntity event (@RequestBody @Valid EventDto eventDto){
