@@ -19,8 +19,10 @@ public class Withdraw implements Event {
 
         if(accountEntity != null) {
             BigDecimal balance = accountEntity.getAmount().subtract(amount);
-            accountEntity.setAmount(balance);
-            return accountRepository.save(accountEntity);
+            if(balance.compareTo(BigDecimal.ZERO) > 0) {
+                accountEntity.setAmount(balance);
+                return accountRepository.save(accountEntity);
+            }
         }
 
         return accountEntity;
