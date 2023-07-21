@@ -30,7 +30,7 @@ public class AccountService implements AccountServiceInterface {
         Map<String, Event>  eventMap = new HashMap<>();
         eventMap.put("deposit", applicationContext.getBean(Deposit.class));
         eventMap.put("withdraw", applicationContext.getBean(Withdraw.class));
-        eventMap.put("transfer", applicationContext.getBean(Withdraw.class));
+        eventMap.put("transfer", applicationContext.getBean(Transfer.class));
         return eventMap;
     }
     public Map<String, DtoInterface> eventDtoMap(){

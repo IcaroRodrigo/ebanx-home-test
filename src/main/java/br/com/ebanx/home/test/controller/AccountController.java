@@ -13,9 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class AccountController {
@@ -39,11 +37,11 @@ public class AccountController {
         String type = eventDto.type();
         Event event = eventMap.get(type);
         DtoInterface dtoOut = eventDtoMap.get(type);
-        Integer accountCode = (eventDto.destination() == null) ? eventDto.origin() : eventDto.destination();
-        AccountEntity account = event.action(accountCode, eventDto.amount());
-        Optional<AccountEntity> accountOptional = Optional.ofNullable(account);
 
-        return accountOptional.map(data -> ResponseEntity.status(HttpStatus.CREATED).body(dtoOut.factory(new BalanceDto(data)))).orElse(ResponseEntity.notFound().build());
+        List<AccountEntity> account = event.action(eventDto);
+        Optional<List<AccountEntity>> accountOptional = Optional.ofNullable(account);
+
+        return accountOptional.map(data -> ResponseEntity.status(HttpStatus.CREATED).body(dtoOut.factory(data))).orElse(ResponseEntity.notFound().build());
     }
 
 }
