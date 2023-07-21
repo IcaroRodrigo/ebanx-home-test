@@ -1,19 +1,21 @@
 package br.com.ebanx.home.test.controller;
 
-import br.com.ebanx.home.test.dto.*;
+import br.com.ebanx.home.test.dto.BalanceDto;
+import br.com.ebanx.home.test.dto.DtoInterface;
+import br.com.ebanx.home.test.dto.EventDto;
 import br.com.ebanx.home.test.entity.AccountEntity;
 import br.com.ebanx.home.test.service.Event;
 import br.com.ebanx.home.test.service.impl.AccountService;
-import br.com.ebanx.home.test.service.impl.Deposit;
-import br.com.ebanx.home.test.service.impl.Withdraw;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class AccountController {

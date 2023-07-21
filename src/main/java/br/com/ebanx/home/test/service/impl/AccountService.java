@@ -1,7 +1,7 @@
 package br.com.ebanx.home.test.service.impl;
 
-import br.com.ebanx.home.test.dto.imp.DepositDto;
 import br.com.ebanx.home.test.dto.DtoInterface;
+import br.com.ebanx.home.test.dto.imp.DepositDto;
 import br.com.ebanx.home.test.dto.imp.TransferDto;
 import br.com.ebanx.home.test.dto.imp.WithdrawDto;
 import br.com.ebanx.home.test.entity.AccountEntity;
