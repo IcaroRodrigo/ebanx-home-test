@@ -5,13 +5,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 @Component
-public class DepositDto  implements DtoInterface{
-   public BalanceDto destination;
+public class WithdrawDto implements DtoInterface{
+    public BalanceDto origin;
 
     @Override
     public DtoInterface factory(BalanceDto balanceDto) {
-        this.destination = balanceDto;
+        this.origin = balanceDto;
         return this;
     }
 }

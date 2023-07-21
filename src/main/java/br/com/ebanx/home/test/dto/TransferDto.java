@@ -1,17 +1,16 @@
 package br.com.ebanx.home.test.dto;
 
 import lombok.Getter;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DepositDto  implements DtoInterface{
-   public BalanceDto destination;
+public class TransferDto implements DtoInterface{
+    public BalanceDto origin;
 
     @Override
     public DtoInterface factory(BalanceDto balanceDto) {
-        this.destination = balanceDto;
+        this.origin = balanceDto;
         return this;
     }
 }
