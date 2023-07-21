@@ -24,12 +24,14 @@ public class Withdraw implements Event {
         accountEntity = accountRepository.findByAccountCode(accountCode);
 
         if(accountEntity != null) {
-            BigDecimal balance = accountEntity.getAmount().subtract(eventDto.amount());
-            if(balance.compareTo(BigDecimal.ZERO) > 0) {
+            Integer balance = accountEntity.getAmount() - eventDto.amount();
+            if(balance > 0) {
                 accountEntity.setAmount(balance);
                 account.add(accountRepository.save(accountEntity));
                 return account;
             }
+            account.add(accountEntity);
+            return account;
         }
         account = null;
         return account;

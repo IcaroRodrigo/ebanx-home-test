@@ -24,7 +24,7 @@ public class Deposit implements Event {
         accountEntity = accountRepository.findByAccountCode(eventDto.destination());
        if(accountEntity != null) {
 
-           BigDecimal balance = accountEntity.getAmount().add(eventDto.amount());
+           Integer balance = accountEntity.getAmount() + eventDto.amount();
            accountEntity.setAmount(balance);
        }
         else{

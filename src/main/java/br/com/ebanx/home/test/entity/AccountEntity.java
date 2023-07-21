@@ -22,5 +22,5 @@ public class AccountEntity {
     @Column(nullable = false, unique = true)
     private Integer accountCode;
     @Column(nullable = false)
-    private BigDecimal amount;
+    private Integer amount;
 }

@@ -24,16 +24,14 @@ public class Transfer implements Event {
         accountEntityDestination = accountRepository.findByAccountCode(eventDto.destination());
 
         if(accountEntityOrigin != null && accountEntityDestination != null) {
-            BigDecimal balanceOrigin = accountEntityOrigin.getAmount().subtract(eventDto.amount());
+            Integer balanceOrigin = accountEntityOrigin.getAmount() - eventDto.amount();
 
 
-            if(balanceOrigin.compareTo(BigDecimal.ZERO) > 0) {
+            if(balanceOrigin > 0) {
                 accountEntityOrigin.setAmount(balanceOrigin);
                 account.add(accountRepository.save(accountEntityOrigin));
 
-
-
-                BigDecimal balanceDestination = accountEntityDestination.getAmount().add(eventDto.amount());
+                Integer balanceDestination = accountEntityDestination.getAmount() + eventDto.amount();
                 accountEntityDestination.setAmount(balanceDestination);
                 account.add(accountRepository.save(accountEntityDestination));
 
