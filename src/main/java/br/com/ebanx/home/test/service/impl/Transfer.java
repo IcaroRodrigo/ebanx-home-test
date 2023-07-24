@@ -38,7 +38,7 @@ public class Transfer implements Event {
                 else{
                    AccountEntity accountEntityNew = new AccountEntity();
                     accountEntityNew.setAccountCode(eventDto.destination());
-                    accountEntityNew.setAmount(accountEntityOrigin.getAmount());
+                    accountEntityNew.setAmount(eventDto.amount());
                     account.add(accountRepository.save(accountEntityNew));
                 }
 
