@@ -25,7 +25,7 @@ public class Withdraw implements Event {
 
         if(accountEntity != null) {
             Integer balance = accountEntity.getAmount() - eventDto.amount();
-            if(balance > 0) {
+            if(balance >= 0) {
                 accountEntity.setAmount(balance);
                 account.add(accountRepository.save(accountEntity));
                 return account;

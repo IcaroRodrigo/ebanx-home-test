@@ -23,24 +23,31 @@ public class Transfer implements Event {
         AccountEntity accountEntityDestination;
         accountEntityDestination = accountRepository.findByAccountCode(eventDto.destination());
 
-        if(accountEntityOrigin != null && accountEntityDestination != null) {
+        if(accountEntityOrigin != null) {
             Integer balanceOrigin = accountEntityOrigin.getAmount() - eventDto.amount();
 
 
-            if(balanceOrigin > 0) {
+            if(balanceOrigin >= 0) {
                 accountEntityOrigin.setAmount(balanceOrigin);
                 account.add(accountRepository.save(accountEntityOrigin));
-
-                Integer balanceDestination = accountEntityDestination.getAmount() + eventDto.amount();
-                accountEntityDestination.setAmount(balanceDestination);
-                account.add(accountRepository.save(accountEntityDestination));
+                if (accountEntityDestination != null) {
+                    Integer balanceDestination = accountEntityDestination.getAmount() + eventDto.amount();
+                    accountEntityDestination.setAmount(balanceDestination);
+                    account.add(accountRepository.save(accountEntityDestination));
+                }
+                else{
+                   AccountEntity accountEntityNew = new AccountEntity();
+                    accountEntityNew.setAccountCode(eventDto.destination());
+                    accountEntityNew.setAmount(accountEntityOrigin.getAmount());
+                    account.add(accountRepository.save(accountEntityNew));
+                }
 
                 return account;
             }
 
-            account.add(accountEntityOrigin);
-            account.add(accountEntityDestination = accountRepository.findByAccountCode(eventDto.destination()));
-            return account;
+//            account.add(accountEntityOrigin);
+//            account.add(accountRepository.findByAccountCode(eventDto.destination()));
+//            return account;
         }
         account = null;
         return account;
