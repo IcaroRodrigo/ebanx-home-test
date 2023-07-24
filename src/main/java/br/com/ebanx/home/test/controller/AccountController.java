@@ -7,7 +7,6 @@ import br.com.ebanx.home.test.dto.EventDto;
 import br.com.ebanx.home.test.entity.AccountEntity;
 import br.com.ebanx.home.test.service.Event;
 import br.com.ebanx.home.test.service.impl.AccountService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
